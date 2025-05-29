@@ -16,7 +16,7 @@ A complete authentication service built with Spring Boot, MongoDB, Redis, and JW
 
 ## Tech Stack
 
-- **Spring Boot 3.2.0** - Application framework
+- **Spring Boot** - Application framework
 - **MongoDB** - User data storage
 - **Redis** - Token storage and blacklisting
 - **JWT** - Authentication tokens
@@ -48,25 +48,6 @@ cd authentication-service
    - Start Redis on localhost:6379
    - No password required for local development
 
-4. Configure email settings in `application.yml`:
-```yaml
-spring:
-  mail:
-    username: your-email@gmail.com
-    password: your-app-password  # Use Gmail app password, not regular password
-```
-
-5. Set environment variables (optional):
-```bash
-export JWT_SECRET=your-secret-key
-export MAIL_USERNAME=your-email@gmail.com
-export MAIL_PASSWORD=your-app-password
-```
-
-6. Run the application:
-```bash
-mvn spring-boot:run
-```
 
 ## API Endpoints
 
@@ -203,12 +184,6 @@ Common HTTP status codes:
 5. **Token Blacklisting**: Allows proper logout functionality
 6. **Email Verification**: Ensures valid email addresses
 
-## Testing with Postman
-
-1. Import the Postman collection from `postman/Authentication_Service_API.json`
-2. Import the environment from `postman/Authentication_Service_Environment.json`
-3. Update the environment variables as needed
-4. Run the collection tests
 
 ## Troubleshooting
 
