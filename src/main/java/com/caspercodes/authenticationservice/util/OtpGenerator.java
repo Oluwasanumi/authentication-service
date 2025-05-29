@@ -5,10 +5,6 @@ import org.springframework.stereotype.Component;
 
 import java.security.SecureRandom;
 
-/**
- * Utility class for generating OTP codes.
- * Uses SecureRandom for cryptographically strong random numbers.
- */
 @Component
 public class OtpGenerator {
 
@@ -18,9 +14,6 @@ public class OtpGenerator {
     private static final String DIGITS = "0123456789";
     private final SecureRandom random = new SecureRandom();
 
-    /**
-     * Generate a random OTP of specified length
-     */
     public String generateOtp() {
         StringBuilder otp = new StringBuilder(otpLength);
 
@@ -31,9 +24,6 @@ public class OtpGenerator {
         return otp.toString();
     }
 
-    /**
-     * Generate OTP with custom length
-     */
     public String generateOtp(int length) {
         StringBuilder otp = new StringBuilder(length);
 
