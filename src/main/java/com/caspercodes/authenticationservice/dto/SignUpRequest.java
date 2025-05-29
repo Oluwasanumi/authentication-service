@@ -9,9 +9,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/**
- * DTO for user registration requests
- */
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -31,9 +29,7 @@ public class SignUpRequest {
     private String password;
 }
 
-/**
- * DTO for login requests
- */
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -48,9 +44,7 @@ class LoginRequest {
     private String password;
 }
 
-/**
- * DTO for OTP verification
- */
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -66,9 +60,7 @@ class VerifyOtpRequest {
     private String code;
 }
 
-/**
- * DTO for password reset request
- */
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -80,9 +72,7 @@ class ForgotPasswordRequest {
     private String email;
 }
 
-/**
- * DTO for password reset completion
- */
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -106,9 +96,7 @@ class ResetPasswordRequest {
     private String newPassword;
 }
 
-/**
- * DTO for refresh token request
- */
+
 @Data
 @Builder
 @NoArgsConstructor
