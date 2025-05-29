@@ -64,9 +64,7 @@ public class JwtUtil {
                 .compact();
     }
 
-    /**
-     * Extract username (email) from token
-     */
+
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
     }
