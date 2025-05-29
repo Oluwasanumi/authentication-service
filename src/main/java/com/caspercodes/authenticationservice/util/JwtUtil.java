@@ -69,9 +69,7 @@ public class JwtUtil {
         return extractClaim(token, Claims::getSubject);
     }
 
-    /**
-     * Extract expiration date from token
-     */
+
     public Date extractExpiration(String token) {
         return extractClaim(token, Claims::getExpiration);
     }
