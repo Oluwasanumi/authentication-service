@@ -102,9 +102,7 @@ public class GlobalExceptionHandler {
                 .body(ApiResponse.error("Invalid token"));
     }
 
-    /**
-     * Handle invalid token
-     */
+
     @ExceptionHandler(InvalidTokenException.class)
     public ResponseEntity<ApiResponse<Void>> handleInvalidToken(InvalidTokenException ex) {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
