@@ -16,10 +16,6 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Handles authentication errors and returns JSON response.
- * This is triggered when an unauthenticated user tries to access a protected resource.
- */
 @Component
 @RequiredArgsConstructor
 @Slf4j

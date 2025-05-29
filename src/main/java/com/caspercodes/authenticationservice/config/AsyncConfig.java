@@ -8,10 +8,6 @@ import org.springframework.context.annotation.Bean;
 
 import java.util.concurrent.Executor;
 
-/**
- * Configuration for async operations.
- * Enables @Async annotation and configures thread pool.
- */
 @Configuration
 @EnableAsync
 public class AsyncConfig implements AsyncConfigurer {

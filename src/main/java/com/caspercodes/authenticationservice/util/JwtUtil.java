@@ -13,12 +13,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
-/**
- * Utility class for JWT operations.
- *
- * @Component marks this as a Spring bean
- * @Slf4j provides a logger instance
- */
 @Component
 @Slf4j
 public class JwtUtil {
@@ -32,17 +26,13 @@ public class JwtUtil {
     @Value("${app.jwt.refresh-expiration}")
     private Long refreshExpiration;
 
-    /**
-     * Generate signing key from secret
-     */
+
     private SecretKey getSigningKey() {
         byte[] keyBytes = secret.getBytes(StandardCharsets.UTF_8);
         return Keys.hmacShaKeyFor(keyBytes);
     }
 
-    /**
-     * Generate access token for user
-     */
+
     public String generateAccessToken(String userId, String email) {
         Map<String, Object> claims = new HashMap<>();
         claims.put("userId", userId);
@@ -51,9 +41,7 @@ public class JwtUtil {
         return createToken(claims, email, expiration);
     }
 
-    /**
-     * Generate refresh token for user
-     */
+
     public String generateRefreshToken(String userId, String email) {
         Map<String, Object> claims = new HashMap<>();
         claims.put("userId", userId);
@@ -62,9 +50,7 @@ public class JwtUtil {
         return createToken(claims, email, refreshExpiration);
     }
 
-    /**
-     * Create JWT token with claims
-     */
+
     private String createToken(Map<String, Object> claims, String subject, Long expiration) {
         Date now = new Date();
         Date expiryDate = new Date(now.getTime() + expiration);
@@ -78,31 +64,23 @@ public class JwtUtil {
                 .compact();
     }
 
-    /**
-     * Extract username (email) from token
-     */
+
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
     }
 
-    /**
-     * Extract expiration date from token
-     */
+
     public Date extractExpiration(String token) {
         return extractClaim(token, Claims::getExpiration);
     }
 
-    /**
-     * Extract specific claim from token
-     */
+
     public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
         final Claims claims = extractAllClaims(token);
         return claimsResolver.apply(claims);
     }
 
-    /**
-     * Extract all claims from token
-     */
+
     private Claims extractAllClaims(String token) {
         try {
             return Jwts.parser()
@@ -119,9 +97,7 @@ public class JwtUtil {
         }
     }
 
-    /**
-     * Check if token is expired
-     */
+
     public Boolean isTokenExpired(String token) {
         try {
             return extractExpiration(token).before(new Date());
@@ -130,9 +106,7 @@ public class JwtUtil {
         }
     }
 
-    /**
-     * Validate token
-     */
+
     public Boolean validateToken(String token, String username) {
         try {
             final String extractedUsername = extractUsername(token);
@@ -143,25 +117,19 @@ public class JwtUtil {
         }
     }
 
-    /**
-     * Get user ID from token
-     */
+
     public String getUserIdFromToken(String token) {
         Claims claims = extractAllClaims(token);
         return claims.get("userId", String.class);
     }
 
-    /**
-     * Check if token is access token
-     */
+
     public boolean isAccessToken(String token) {
         Claims claims = extractAllClaims(token);
         return "access".equals(claims.get("type", String.class));
     }
 
-    /**
-     * Check if token is refresh token
-     */
+
     public boolean isRefreshToken(String token) {
         Claims claims = extractAllClaims(token);
         return "refresh".equals(claims.get("type", String.class));

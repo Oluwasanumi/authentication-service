@@ -9,9 +9,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/**
- * DTO for password reset completion
- */
 @Data
 @Builder
 @NoArgsConstructor

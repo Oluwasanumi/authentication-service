@@ -10,10 +10,6 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
-/**
- * Service for sending emails.
- * Uses @Async for non-blocking email sending.
- */
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -24,9 +20,6 @@ public class EmailService {
     @Value("${app.email.from}")
     private String fromEmail;
 
-    /**
-     * Send OTP email for email verification
-     */
     @Async
     public void sendVerificationEmail(String to, String otp) {
         try {
@@ -44,13 +37,9 @@ public class EmailService {
             log.info("Verification email sent to: {}", to);
         } catch (MessagingException e) {
             log.error("Failed to send verification email to: {}", to, e);
-            // In production, you might want to implement retry logic or use a message queue
         }
     }
 
-    /**
-     * Send OTP email for password reset
-     */
     @Async
     public void sendPasswordResetEmail(String to, String otp) {
         try {
@@ -71,9 +60,6 @@ public class EmailService {
         }
     }
 
-    /**
-     * Build HTML content for verification email
-     */
     private String buildVerificationEmailContent(String otp) {
         return """
                 <!DOCTYPE html>
@@ -111,9 +97,7 @@ public class EmailService {
                 """.formatted(otp);
     }
 
-    /**
-     * Build HTML content for password reset email
-     */
+
     private String buildPasswordResetEmailContent(String otp) {
         return """
                 <!DOCTYPE html>
