@@ -97,9 +97,7 @@ public class JwtUtil {
         }
     }
 
-    /**
-     * Check if token is expired
-     */
+
     public Boolean isTokenExpired(String token) {
         try {
             return extractExpiration(token).before(new Date());
@@ -108,9 +106,7 @@ public class JwtUtil {
         }
     }
 
-    /**
-     * Validate token
-     */
+
     public Boolean validateToken(String token, String username) {
         try {
             final String extractedUsername = extractUsername(token);
@@ -121,25 +117,19 @@ public class JwtUtil {
         }
     }
 
-    /**
-     * Get user ID from token
-     */
+
     public String getUserIdFromToken(String token) {
         Claims claims = extractAllClaims(token);
         return claims.get("userId", String.class);
     }
 
-    /**
-     * Check if token is access token
-     */
+
     public boolean isAccessToken(String token) {
         Claims claims = extractAllClaims(token);
         return "access".equals(claims.get("type", String.class));
     }
 
-    /**
-     * Check if token is refresh token
-     */
+
     public boolean isRefreshToken(String token) {
         Claims claims = extractAllClaims(token);
         return "refresh".equals(claims.get("type", String.class));
