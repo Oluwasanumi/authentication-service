@@ -50,9 +50,7 @@ public class JwtUtil {
         return createToken(claims, email, refreshExpiration);
     }
 
-    /**
-     * Create JWT token with claims
-     */
+
     private String createToken(Map<String, Object> claims, String subject, Long expiration) {
         Date now = new Date();
         Date expiryDate = new Date(now.getTime() + expiration);
