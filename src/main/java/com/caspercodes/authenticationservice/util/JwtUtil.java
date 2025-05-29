@@ -13,7 +13,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
-
+/**
+ * Utility class for JWT operations.
+ *
+ * @Component marks this as a Spring bean
+ * @Slf4j provides a logger instance
+ */
 @Component
 @Slf4j
 public class JwtUtil {
@@ -27,7 +32,9 @@ public class JwtUtil {
     @Value("${app.jwt.refresh-expiration}")
     private Long refreshExpiration;
 
-
+    /**
+     * Generate signing key from secret
+     */
     private SecretKey getSigningKey() {
         byte[] keyBytes = secret.getBytes(StandardCharsets.UTF_8);
         return Keys.hmacShaKeyFor(keyBytes);
@@ -63,11 +70,11 @@ public class JwtUtil {
         Date expiryDate = new Date(now.getTime() + expiration);
 
         return Jwts.builder()
-                .setClaims(claims)
-                .setSubject(subject)
-                .setIssuedAt(now)
-                .setExpiration(expiryDate)
-                .signWith(getSigningKey(), SignatureAlgorithm.HS512)
+                .claims(claims)
+                .subject(subject)
+                .issuedAt(now)
+                .expiration(expiryDate)
+                .signWith(getSigningKey())
                 .compact();
     }
 
@@ -98,11 +105,11 @@ public class JwtUtil {
      */
     private Claims extractAllClaims(String token) {
         try {
-            return Jwts.parserBuilder()
-                    .setSigningKey(getSigningKey())
+            return Jwts.parser()
+                    .verifyWith(getSigningKey())
                     .build()
-                    .parseClaimsJws(token)
-                    .getBody();
+                    .parseSignedClaims(token)
+                    .getPayload();
         } catch (ExpiredJwtException e) {
             log.error("JWT token is expired: {}", e.getMessage());
             throw e;
