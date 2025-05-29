@@ -41,9 +41,7 @@ public class JwtUtil {
         return createToken(claims, email, expiration);
     }
 
-    /**
-     * Generate refresh token for user
-     */
+
     public String generateRefreshToken(String userId, String email) {
         Map<String, Object> claims = new HashMap<>();
         claims.put("userId", userId);
