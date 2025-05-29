@@ -1,9 +1,9 @@
 package com.caspercodes.authenticationservice.exception;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ResponseStatus; /**
- * Thrown when email is not verified
- */
+import org.springframework.web.bind.annotation.ResponseStatus;
+
+
 @ResponseStatus(HttpStatus.FORBIDDEN)
 public class EmailNotVerifiedException extends AuthenticationException {
     public EmailNotVerifiedException() {
