@@ -306,7 +306,7 @@ public class AuthService {
 
         // Generate OTP
         String otpCode = otpGenerator.generateOtp();
-        LocalDateTime expiresAt = LocalDateTime.now().plusMillis(otpExpiration);
+        LocalDateTime expiresAt = LocalDateTime.now().plusSeconds(otpExpiration / 1000);
 
         // Save OTP
         OtpToken otpToken = OtpToken.builder()
@@ -341,7 +341,7 @@ public class AuthService {
 
         // Generate OTP
         String otpCode = otpGenerator.generateOtp();
-        LocalDateTime expiresAt = LocalDateTime.now().plusMillis(otpExpiration);
+        LocalDateTime expiresAt = LocalDateTime.now().plusSeconds(otpExpiration / 1000);
 
         // Save OTP
         OtpToken otpToken = OtpToken.builder()
