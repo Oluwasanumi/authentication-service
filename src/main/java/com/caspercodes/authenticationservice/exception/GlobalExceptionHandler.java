@@ -40,9 +40,7 @@ public class GlobalExceptionHandler {
                 .body(ApiResponse.error("Validation failed"));
     }
 
-    /**
-     * Handle user already exists exception
-     */
+
     @ExceptionHandler(UserAlreadyExistsException.class)
     public ResponseEntity<ApiResponse<Void>> handleUserAlreadyExists(UserAlreadyExistsException ex) {
         log.error("User already exists: {}", ex.getMessage());
