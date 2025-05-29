@@ -130,9 +130,7 @@ public class GlobalExceptionHandler {
                 .body(ApiResponse.error(ex.getMessage()));
     }
 
-    /**
-     * Handle all other exceptions
-     */
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ApiResponse<Void>> handleGlobalException(Exception ex) {
         log.error("Unexpected error occurred", ex);
