@@ -74,17 +74,13 @@ public class JwtUtil {
         return extractClaim(token, Claims::getExpiration);
     }
 
-    /**
-     * Extract specific claim from token
-     */
+
     public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
         final Claims claims = extractAllClaims(token);
         return claimsResolver.apply(claims);
     }
 
-    /**
-     * Extract all claims from token
-     */
+
     private Claims extractAllClaims(String token) {
         try {
             return Jwts.parser()
