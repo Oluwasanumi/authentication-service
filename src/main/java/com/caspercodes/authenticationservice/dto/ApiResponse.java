@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
-
 @Data
 @Builder
 @NoArgsConstructor
@@ -20,7 +19,6 @@ public class ApiResponse<T> {
     private T data;
     private LocalDateTime timestamp;
 
-    // Static factory methods for common responses
     public static <T> ApiResponse<T> success(String message, T data) {
         return ApiResponse.<T>builder()
                 .success(true)
