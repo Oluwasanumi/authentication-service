@@ -13,12 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
-/**
- * Utility class for JWT operations.
- *
- * @Component marks this as a Spring bean
- * @Slf4j provides a logger instance
- */
+
 @Component
 @Slf4j
 public class JwtUtil {
